@@ -1,0 +1,1 @@
+export { ButtonHum } from "./ButtonHum"

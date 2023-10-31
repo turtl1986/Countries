@@ -1,0 +1,69 @@
+button {
+	width: 30px;
+	height: 30px;
+	position: relative;
+	z-index:2;
+	overflow: hidden;
+	border-radius: 10px;
+	margin: 10px;
+}
+
+button span {
+	width: 30px;
+	height: 2px;
+	position: absolute;
+	top: 14px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #222222;
+	transition: all 0.5s;
+}
+
+button span:nth-of-type(2) {
+	top: calc(50% - 5px);
+}
+button span:nth-of-type(3) {
+	top: calc(50% + 5px);
+}
+
+/* Меняем гамбургер иконку, когда меню открыто */
+button.active span:nth-of-type(1) {
+  display: none;
+}
+button.active span:nth-of-type(2) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(45deg);  
+}
+button.active span:nth-of-type(3) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(-45deg); 
+}
+
+/* Меню, которое будет появляться */
+.menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100px;
+	height: 100%;
+	padding: 15px;
+    background: #44b280;
+	transform: translateX(-100%);
+	opacity: 0.4;
+	transition: transform 0.5s; 
+}
+
+.menu.active {
+	transform: translateX(0);
+
+}
+
+.menu li {
+	list-style-type: none;
+	cursor: pointer;
+	color: #2e2b2e;
+}
+
+.menu li:active {
+	color: rgb(234, 220, 206);
+} 
