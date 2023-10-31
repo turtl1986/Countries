@@ -1,0 +1,28 @@
+.container{
+    max-width: 1520px;
+    margin: 0 auto;
+    padding:0 20px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+  padding: 20px 0;
+  align-items: center;
+}
+
+.header__title{
+    font-size: 30px;
+}
+
+.header__theme{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.header__button{
+    border: none;
+    font-size: 20px;
+}

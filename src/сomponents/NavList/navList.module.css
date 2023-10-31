@@ -1,0 +1,21 @@
+.nav__list{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.nav__item{
+    font-size: 20px;
+}
+
+.nav__link{
+text-decoration: none;
+}
+
+.nav__link.active{
+    color:blue
+}
+
+.nav__link:hover{
+    color: blueviolet;
+}

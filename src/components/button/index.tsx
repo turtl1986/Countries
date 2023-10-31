@@ -1,1 +1,0 @@
-export { ButtonHum } from "./ButtonHum"
