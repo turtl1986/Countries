@@ -1,0 +1,14 @@
+.container{
+    max-width: 1520px;
+    margin: 0 auto;
+    padding:0 20px;
+}
+
+.country__button{
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 20px;
+}

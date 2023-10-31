@@ -1,0 +1,13 @@
+.nav__list{
+    display: flex;
+    gap: 10px;
+}
+
+.nav__link{
+    font-size: 20px;
+    text-decoration: inherit;
+}
+
+.nav__link:hover{
+    color: blueviolet;
+}
