@@ -7,7 +7,6 @@ import { Erorr } from "./pages/Errors";
 import { PrivateRouter } from "./pages/PrivareRoute";
 import { Country } from "./pages/Country/Country";
 
-
 export function App() {
   return (
     <>

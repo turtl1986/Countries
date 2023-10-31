@@ -4,27 +4,28 @@ import sun from '../../assets/icons8-солнце.svg'
 import { useTheme } from '../../context/theme.context'
 import { NavLink, useNavigate} from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../redux/useRedux'
-import { logoutAction } from '../../redux/auth/authAction'
 import { NavList } from '../NavList/NavList'
+import { logout } from '../../redux'
 
 export function Header()
 {
 
-    const {theme,changeTheme}=useTheme()
+    const {theme, setTheme}=useTheme()
 
     const navigate=useNavigate()
+
     const auth=useAppSelector(state=>state.auth)
     const dispatch=useAppDispatch()
 
     const handleclick=()=>
     {
-      changeTheme()
+      setTheme(!theme)
     }
 
     const handleLogOut=()=>{
      
         navigate('/countries')
-     dispatch(logoutAction())
+     dispatch(logout())
     }
 
 return(
@@ -33,10 +34,11 @@ return(
 <span className={header.header__title}>Where is the world?</span>
   <NavList/>
     <div className={header.header__theme}>
-    <img onClick={handleclick} src={theme==='light' ? sun : moon} alt="" />
+    <img src={theme ? sun : moon} alt="" />
+     <button className={header.header__button} onClick={handleclick}>{theme ? 'dark mode':'light mode'}</button>
     </div>
 {
-  auth.user?
+  auth.username?
   <button className={header.header__button} onClick={handleLogOut}>logout</button>:
   <button className={header.header__button} onClick={()=>{
     navigate('/login')

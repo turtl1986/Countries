@@ -1,12 +1,7 @@
-import { ReactNode, createContext, useContext, useLayoutEffect, useState } from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
 import themeStl from './theme.module.css'
 
-type ThemeContextType = {
-    theme: 'light' | 'moon',
-    changeTheme: () => void
-   } 
-
-const ThemeContext=createContext<ThemeContextType>({ theme: 'light', changeTheme: () => {}})
+const ThemeContext=createContext<any>('')
 
 export const useTheme=() => {
     return useContext(ThemeContext)
@@ -14,21 +9,21 @@ export const useTheme=() => {
 
 export const Theme=({children}:{children:ReactNode})=>{
 
-    const [theme, setTheme] = useState<'light'|'moon'>('light')
+    const [theme, setTheme] = useState(true)
 
-    useLayoutEffect(() => {
-        const root = window.document.documentElement
-        root.setAttribute('data-theme', theme)
-       }, [theme])
-
-       const changeTheme = () => {
-        setTheme(prev => prev === 'light' ? 'moon' : 'light')
-       }
-
-       return <ThemeContext.Provider value={{
-        theme,
-        changeTheme
-       }}>{children}</ThemeContext.Provider>
+    return(
+<ThemeContext.Provider 
+value={
+    {
+        theme:theme,
+        setTheme
+    }
+}>
+    <div className={theme ? `${themeStl.sun}` : `${themeStl.moon}`}>
+    {children}
+    </div>
+</ThemeContext.Provider>
+    )
 
 }
 

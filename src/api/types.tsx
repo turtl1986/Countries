@@ -1,4 +1,4 @@
-export interface ICountries{
+export interface IContry{
     name: {
         common: string
         official: string

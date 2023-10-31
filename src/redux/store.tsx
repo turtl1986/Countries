@@ -1,29 +1,20 @@
-import { Store, applyMiddleware, combineReducers, createStore } from "redux";
-import { authReducer } from './auth/authReducer'
-import thunk from 'redux-thunk'
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage' 
-import { countryReduser } from "./country/reduser"
-import { logsTypeActionMiddleware } from "../middleware"
+import { combineReducers, Store } from "redux"
+import { configureStore } from "@reduxjs/toolkit"
+import { authReduser, countriesReducer, countryReducer } from '.'
 
-const persistConfig = {
-	key: 'root',
-	storage
-}
 
-const RootState =  combineReducers({
-    auth: authReducer,
-    country:countryReduser
+
+
+export const rootReducer=combineReducers({
+  auth:authReduser,
+  countries:countriesReducer,
+  country:countryReducer
 })
 
-export const persistedReducer = persistReducer(persistConfig, RootState)
-
-export const store:Store=createStore(
-    persistedReducer,
-   applyMiddleware(logsTypeActionMiddleware,thunk)
-)
-
-export const persistor = persistStore(store)
+export const store: Store = configureStore({
+  reducer: rootReducer,
+  devTools: true,
+})
 
 export type RootState=ReturnType<typeof store.getState>
 export type AppDispatch=typeof store.dispatch

@@ -2,22 +2,21 @@ import { ChangeEvent, useEffect, useState } from "react"
 import { Card } from "../Card/Card"
 import mainStyle from './wrapper.module.css'
 import searchIcon from '../../assets/icons8-поиск.svg'
-import { ICountries } from "../../api/interface/countries"
-import { FetchCountriesThunk } from "../../redux/country/action"
+import { IContry } from "../../api/types"
 import { useAppDispatch, useAppSelector } from "../../redux/useRedux"
-import { useSelector } from "react-redux"
-import { URL_BASE } from "../../api/api/URL/URL"
+import { fetchCountriesThunk } from "../../redux/countries/thunks"
+
 
 export function Wrapper(){
 
+    
     const [search, setSearch]=useState('')
 
-    const {isLoading,countries}=useAppSelector(state=>state.country)
-
     const dispatch=useAppDispatch()
+    const {countries}=useAppSelector(state=>state.countries)
 
    useEffect(()=>{
-    dispatch(FetchCountriesThunk(URL_BASE))
+   dispatch(fetchCountriesThunk())
    },[dispatch])
 
   const handleSearch=(event:ChangeEvent<HTMLInputElement>)=>
@@ -42,11 +41,7 @@ return(
     </div>
 </div>
 <div className={mainStyle.wrapper}>
-    {
-        isLoading ? <span>isloading</span>:
-        countriesSearch?.map((country:ICountries) =><Card key={country.name.common} {...country} />)
-    }
-    
+    { countriesSearch.map((country:IContry) =><Card key={country.name.common} {...country} />)}
 </div>
     </div>
   

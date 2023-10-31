@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../redux/useRedux"
-import { loginAction } from "../../redux/auth/authAction"
 import formStyle from './login.module.css'
+import { login } from "../../redux"
 
 
 export function Login()
@@ -16,7 +16,7 @@ const formData = new FormData(event.currentTarget)
 const userName = formData.get('userName')?.toString()
 if(userName){
         navigation('/countries',{replace:true})
-        dispatch(loginAction(userName))
+        dispatch(login(userName))
     }
 }
     return(
